@@ -44,6 +44,7 @@ class SecurityDetail(models.Model):
 
     # 场地安全程度描述choice
     SECURITY_DETAIL_CHOICE = (
+        (0, ''),
         (1, '未发现影响房屋周边安全的不利影响'),
         (2, '房屋周边准在超高土体滑坡'),
         (3, '房屋周边场地存在地质斜坡'),
@@ -70,6 +71,7 @@ class GroundsillDetail(models.Model):
 
     # 地基基础描述choice
     GROUNDSILL_DETAIL_CHOICE = (
+        (0, ''),
         (1, '未发现明显不均匀沉降及滑移'),
         (2, '地基基础轻微不均匀沉降'),
         (3, '地基基础不均匀沉降'),
@@ -97,6 +99,7 @@ class TiltDetail(models.Model):
 
     # 房屋整体倾斜描述choice
     TILT_DETAIL_CHOICE = (
+        (0, ''),
         (1, '未发现明显倾斜'),
         (2, '房屋墙体局部倾斜'),
         (3, '房屋墙体整体倾斜'),
@@ -119,6 +122,7 @@ class UponDetail(models.Model):
 
     # 上部承重结构描述choice
     UPON_DETAIL_CHOICE = (
+        (0, ''),
         (1, '未发现结构承载缺陷'),
         (2, '墙体存在裂缝'),
         (3, '墙体轻微裂缝'),
@@ -156,6 +160,7 @@ class FenceDetail(models.Model):
 
     # 围护结构描述choice
     FENCE_DETAIL_CHOICE = (
+        (0, ''),
         (1, '未发现围护缺损'),
         (2, '同上'),
         (3, '墙体存在裂缝'),
@@ -180,6 +185,7 @@ class FenceDetail(models.Model):
 
 class Advice(models.Model):
     ADVICE_CHOICE = (
+        (0, ''),
         (1, '修缮'),
         (2, '加固危险点'),
         (3, '建议重建'),
@@ -213,7 +219,6 @@ class Reviewer(models.Model):
 class Report(models.Model):
     # 年代choice
     DECADE_CHOICE = (
-        ('0000', '未知'),
         ('1900', '1900'),
         ('1910', '1910'),
         ('1920', '1920'),
@@ -341,56 +346,75 @@ class Report(models.Model):
     )
     bid = models.CharField(max_length=100, null=True, blank=True,
                            verbose_name='建鉴编号')
-    name = models.CharField(max_length=250, verbose_name='姓名')
-    identity = models.CharField(max_length=50, verbose_name='身份证号', unique=True)
+    name = models.CharField(max_length=250, null=True, blank=True,
+                            verbose_name='姓名')
+    identity = models.CharField(max_length=50, null=True, blank=True,
+                                verbose_name='身份证号', unique=True)
     decade = models.CharField(choices=DECADE_CHOICE, max_length=10,
-                              default='0000', verbose_name='建成年代')
-    city = models.ForeignKey(City, null=True, on_delete=models.SET_NULL,
+                              null=True, blank=True, verbose_name='建成年代')
+    city = models.ForeignKey(City, null=True, blank=True,
+                             on_delete=models.SET_NULL,
                              verbose_name='城市')
-    town = models.ForeignKey(Town, null=True, on_delete=models.SET_NULL,
+    town = models.ForeignKey(Town, null=True, blank=True,
+                             on_delete=models.SET_NULL,
                              verbose_name='镇')
-    village = models.ForeignKey(Village, null=True, on_delete=models.SET_NULL,
+    village = models.ForeignKey(Village, null=True, blank=True,
+                                on_delete=models.SET_NULL,
                                 verbose_name='村')
-    purpose = models.IntegerField(choices=PURPOSE_CHOICE, default=1,
+    purpose = models.IntegerField(choices=PURPOSE_CHOICE, null=True, blank=True,
                                   verbose_name='用途')
-    comment = models.TextField(max_length=250, verbose_name='备注')
+    comment = models.TextField(max_length=250, null=True, blank=True,
+                               verbose_name='备注')
     structure = models.IntegerField(choices=STRUCTURE_CHOICE,
-                                    default=1, verbose_name='结构形式')
+                                    null=True, blank=True, verbose_name='结构形式')
     # 结构情况打分
     security = models.CharField(max_length=10, choices=DEGREE_CHOICE,
-                                default='a', verbose_name='场地安全程度')
+                                null=True, blank=True, verbose_name='场地安全程度')
     groundsill = models.CharField(max_length=10, choices=DEGREE_CHOICE,
-                                  default='a', verbose_name='地基基础')
-    tilt = models.CharField(max_length=10, choices=DEGREE_CHOICE, default='a',
+                                  null=True, blank=True, verbose_name='地基基础')
+    tilt = models.CharField(max_length=10, choices=DEGREE_CHOICE, null=True,
+                            blank=True,
                             verbose_name='房屋整体倾斜')
-    upon = models.CharField(max_length=10, choices=DEGREE_CHOICE, default='a',
+    upon = models.CharField(max_length=10, choices=DEGREE_CHOICE, null=True,
+                            blank=True,
                             verbose_name='上部承重结构')
-    fence = models.CharField(max_length=10, choices=DEGREE_CHOICE, default='a',
+    fence = models.CharField(max_length=10, choices=DEGREE_CHOICE, null=True,
+                             blank=True,
                              verbose_name='围护结构')
 
     # 下面五个结构描述，每一户可能有1-3条，所以用ManyToMany。
-    security_detail = models.ManyToManyField(SecurityDetail,
+    security_detail = models.ManyToManyField(SecurityDetail,blank=True,
                                              verbose_name='场地安全程度说明')
-    groundsill_detail = models.ManyToManyField(GroundsillDetail,
+    groundsill_detail = models.ManyToManyField(GroundsillDetail,blank=True,
                                                verbose_name='地基基础说明')
-    tilt_detail = models.ManyToManyField(TiltDetail, verbose_name='房屋整体倾斜说明')
-    upon_detail = models.ManyToManyField(UponDetail, verbose_name='上部承重结构说明')
-    fence_detail = models.ManyToManyField(FenceDetail, verbose_name='围护结构说明')
+    tilt_detail = models.ManyToManyField(TiltDetail,blank=True,
+                                         verbose_name='房屋整体倾斜说明')
+    upon_detail = models.ManyToManyField(UponDetail,blank=True,
+                                         verbose_name='上部承重结构说明')
+    fence_detail = models.ManyToManyField(FenceDetail,blank=True,
+                                          verbose_name='围护结构说明')
 
     assess_level = models.CharField(max_length=10, choices=ASSESS_LEVEL_CHOICE,
-                                    default='a', verbose_name='评定等级')
-    advice = models.ManyToManyField(Advice, verbose_name='处理建议')
-    street_contract = models.CharField(max_length=50, verbose_name='镇（街道）联系人')
-    street_contract_phone = models.CharField(max_length=50,
+                                    null=True, blank=True, verbose_name='评定等级')
+    advice = models.ManyToManyField(Advice,blank=True,
+                                    verbose_name='处理建议')
+    street_contract = models.CharField(max_length=50, null=True, blank=True,
+                                       verbose_name='镇（街道）联系人')
+    street_contract_phone = models.CharField(max_length=50, null=True,
+                                             blank=True,
                                              verbose_name='镇（街道）联系人电话')
-    village_contract = models.CharField(max_length=50, verbose_name='村联系人')
-    village_contract_phone = models.CharField(max_length=50,
+    village_contract = models.CharField(max_length=50, null=True, blank=True,
+                                        verbose_name='村联系人')
+    village_contract_phone = models.CharField(max_length=50, null=True,
+                                              blank=True,
                                               verbose_name='村联系人电话')
-    reviewer = models.ForeignKey(Reviewer, null=True, on_delete=models.SET_NULL,
-                                 default=1, verbose_name='审核人')
+    reviewer = models.ForeignKey(Reviewer, null=True, blank=True,
+                                 on_delete=models.SET_NULL,
+                                 verbose_name='审核人')
     created = models.DateField(auto_now_add=True, verbose_name='添加日期')
     updated = models.DateTimeField(auto_now=True, verbose_name='修改日期')
-    appraiser = models.ForeignKey(User, null=True, on_delete=models.SET_NULL,
+    appraiser = models.ForeignKey(User, null=True, blank=True,
+                                  on_delete=models.SET_NULL,
                                   verbose_name='鉴定人')
 
     class Meta:
@@ -398,7 +422,7 @@ class Report(models.Model):
         verbose_name_plural = '报告'
 
     def __str__(self):
-        return str(self.pk) + ' - ' + self.name + '(' + self.identity + ')'
+        return str(self.pk) + ' - ' + str(self.name) + '(' + str(self.identity) + ')'
 
 
 class Picture(models.Model):

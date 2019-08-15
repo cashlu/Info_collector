@@ -45,10 +45,11 @@ class InfoAdmin(admin.ModelAdmin):
     )
     inlines = (PictureAdmin,)
 
-    search_fields = ('name', 'identity', 'comment', )  # advice__advice
+    search_fields = ('name', 'identity', 'comment',)  # advice__advice
     list_filter = (
         'structure', 'security', 'groundsill', 'tilt', 'upon', 'fence',
         'assess_level')
+
     # filter_horizontal = (
     #     'security_detail', 'groundsill_detail', 'tilt_detail', 'upon_detail',
     #     'fence_detail', 'advice')
@@ -56,7 +57,6 @@ class InfoAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.appraiser = request.user
         obj.save()
-
 
 
 # @admin.register(Picture)
