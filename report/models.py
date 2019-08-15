@@ -345,11 +345,11 @@ class Report(models.Model):
     identity = models.CharField(max_length=50, verbose_name='身份证号', unique=True)
     decade = models.CharField(choices=DECADE_CHOICE, max_length=10,
                               default='0000', verbose_name='建成年代')
-    city = models.ForeignKey(City, on_delete=models.DO_NOTHING, default=1,
+    city = models.ForeignKey(City, null=True, on_delete=models.SET_NULL,
                              verbose_name='城市')
-    town = models.ForeignKey(Town, on_delete=models.DO_NOTHING, default=1,
+    town = models.ForeignKey(Town, null=True, on_delete=models.SET_NULL,
                              verbose_name='镇')
-    village = models.ForeignKey(Village, on_delete=models.DO_NOTHING, default=1,
+    village = models.ForeignKey(Village, null=True, on_delete=models.SET_NULL,
                                 verbose_name='村')
     purpose = models.IntegerField(choices=PURPOSE_CHOICE, default=1,
                                   verbose_name='用途')
@@ -386,11 +386,11 @@ class Report(models.Model):
     village_contract = models.CharField(max_length=50, verbose_name='村联系人')
     village_contract_phone = models.CharField(max_length=50,
                                               verbose_name='村联系人电话')
-    reviewer = models.ForeignKey(Reviewer, on_delete=models.DO_NOTHING,
+    reviewer = models.ForeignKey(Reviewer, null=True, on_delete=models.SET_NULL,
                                  default=1, verbose_name='审核人')
     created = models.DateField(auto_now_add=True, verbose_name='添加日期')
     updated = models.DateTimeField(auto_now=True, verbose_name='修改日期')
-    appraiser = models.ForeignKey(User, on_delete=models.DO_NOTHING,
+    appraiser = models.ForeignKey(User, null=True, on_delete=models.SET_NULL,
                                   verbose_name='鉴定人')
 
     class Meta:
@@ -403,7 +403,7 @@ class Report(models.Model):
 
 class Picture(models.Model):
     file = models.ImageField(upload_to='%Y%m%d')
-    report = models.ForeignKey(Report, on_delete=models.DO_NOTHING,
+    report = models.ForeignKey(Report, null=True, on_delete=models.SET_NULL,
                                related_name='report_pics')
     created = models.DateTimeField(auto_now_add=True, verbose_name='添加日期')
 
