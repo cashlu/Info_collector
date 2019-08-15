@@ -14,7 +14,7 @@ class InfoAdmin(admin.ModelAdmin):
     # list_display = [field.name for field in Report._meta.get_fields()]
     list_display = (
         'name', 'identity', 'decade', 'purpose', 'assess_level', 'reviewer',
-        'appraiser', 'appraiser')
+        'appraiser',)
 
     fieldsets = (
         ('基本信息',
@@ -49,9 +49,9 @@ class InfoAdmin(admin.ModelAdmin):
     list_filter = (
         'structure', 'security', 'groundsill', 'tilt', 'upon', 'fence',
         'assess_level')
-    filter_horizontal = (
-        'security_detail', 'groundsill_detail', 'tilt_detail', 'upon_detail',
-        'fence_detail', 'advice')
+    # filter_horizontal = (
+    #     'security_detail', 'groundsill_detail', 'tilt_detail', 'upon_detail',
+    #     'fence_detail', 'advice')
 
     def save_model(self, request, obj, form, change):
         obj.appraiser = request.user
