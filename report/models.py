@@ -428,8 +428,7 @@ class Report(models.Model):
 
 class Picture(models.Model):
     file = models.ImageField(upload_to='%Y%m%d')
-    report = models.ForeignKey(Report, null=True, on_delete=models.SET_NULL,
-                               related_name='report_pics')
+    report = models.ForeignKey(Report, null=True, on_delete=models.SET_NULL)
     created = models.DateTimeField(auto_now_add=True, verbose_name='添加日期')
 
     class Meta:
