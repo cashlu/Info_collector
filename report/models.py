@@ -383,20 +383,20 @@ class Report(models.Model):
                              verbose_name='围护结构')
 
     # 下面五个结构描述，每一户可能有1-3条，所以用ManyToMany。
-    security_detail = models.ManyToManyField(SecurityDetail,blank=True,
+    security_detail = models.ManyToManyField(SecurityDetail, blank=True,
                                              verbose_name='场地安全程度说明')
-    groundsill_detail = models.ManyToManyField(GroundsillDetail,blank=True,
+    groundsill_detail = models.ManyToManyField(GroundsillDetail, blank=True,
                                                verbose_name='地基基础说明')
-    tilt_detail = models.ManyToManyField(TiltDetail,blank=True,
+    tilt_detail = models.ManyToManyField(TiltDetail, blank=True,
                                          verbose_name='房屋整体倾斜说明')
-    upon_detail = models.ManyToManyField(UponDetail,blank=True,
+    upon_detail = models.ManyToManyField(UponDetail, blank=True,
                                          verbose_name='上部承重结构说明')
-    fence_detail = models.ManyToManyField(FenceDetail,blank=True,
+    fence_detail = models.ManyToManyField(FenceDetail, blank=True,
                                           verbose_name='围护结构说明')
 
     assess_level = models.CharField(max_length=10, choices=ASSESS_LEVEL_CHOICE,
                                     null=True, blank=True, verbose_name='评定等级')
-    advice = models.ManyToManyField(Advice,blank=True,
+    advice = models.ManyToManyField(Advice, blank=True,
                                     verbose_name='处理建议')
     street_contract = models.CharField(max_length=50, null=True, blank=True,
                                        verbose_name='镇（街道）联系人')
@@ -422,7 +422,8 @@ class Report(models.Model):
         verbose_name_plural = '报告'
 
     def __str__(self):
-        return str(self.pk) + ' - ' + str(self.name) + '(' + str(self.identity) + ')'
+        return str(self.pk) + ' - ' + str(self.name) + '(' + str(
+            self.identity) + ')'
 
 
 class Picture(models.Model):
@@ -434,3 +435,6 @@ class Picture(models.Model):
     class Meta:
         ordering = ('-created',)
         verbose_name_plural = '图片'
+
+    def __str__(self):
+        return '图片'
