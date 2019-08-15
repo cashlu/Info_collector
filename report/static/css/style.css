@@ -1,0 +1,13 @@
+#content{
+    margin: 20px;
+}
+
+.small-title{
+    display: block;
+    background-color: #eeeeee;
+    padding-left: 10px;
+}
+
+.detail-content{
+    padding: 0 20px;
+}

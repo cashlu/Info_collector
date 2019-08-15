@@ -1,0 +1,42 @@
+{% extends 'report/base.html' %}
+{% block content %}
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>身份证号</th>
+            <th>建成年代</th>
+            <th>房屋地址</th>
+            <th>用途</th>
+            <th>其他</th>
+            <th>结构形式</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for report in report_list %}
+            <tr>
+                <td>{{ report.id }}</td>
+                <td>{{ report.name }}</td>
+                <td>{{ report.identity }}</td>
+                <td>{{ report.decade }}</td>
+                <td>{{ report.city }} - {{ report.town }}
+                    - {{ report.village }}</td>
+                <td>{{ report.get_purpose_display }}</td>
+                <td>{{ report.comment }}</td>
+                <td>{{ report.get_structure_display }}</td>
+                <td>
+                    <a href="{% url 'report:report_detail' report.id %}">详情</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+{% endblock %}
+
+
