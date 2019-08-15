@@ -436,5 +436,4 @@ class Picture(models.Model):
         ordering = ('-created',)
         verbose_name_plural = '图片'
 
-    def __str__(self):
-        return '图片'
+
