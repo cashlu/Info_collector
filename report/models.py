@@ -401,7 +401,6 @@ class Report(models.Model):
         return str(self.pk) + ' - ' + self.name + '(' + self.identity + ')'
 
 
-
 class Picture(models.Model):
     file = models.ImageField(upload_to='%Y%m%d')
     report = models.ForeignKey(Report, on_delete=models.DO_NOTHING,

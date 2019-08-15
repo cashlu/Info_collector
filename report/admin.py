@@ -53,9 +53,9 @@ class InfoAdmin(admin.ModelAdmin):
         'security_detail', 'groundsill_detail', 'tilt_detail', 'upon_detail',
         'fence_detail', 'advice')
 
-    # def save_model(self, request, obj, form, change):
-    #     obj.appraiser = request.user
-    #     obj.save()
+    def save_model(self, request, obj, form, change):
+        obj.appraiser = request.user
+        obj.save()
 
 
 
