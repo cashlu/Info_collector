@@ -45,7 +45,7 @@ class InfoAdmin(admin.ModelAdmin):
     )
     inlines = (PictureAdmin,)
 
-    search_fields = ('name', 'identity', 'comment', 'advice')
+    search_fields = ('name', 'identity', 'comment', )  # advice__advice
     list_filter = (
         'structure', 'security', 'groundsill', 'tilt', 'upon', 'fence',
         'assess_level')
