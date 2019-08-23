@@ -1,22 +1,29 @@
 {% extends 'report/base.html' %}
+{% load static %}
 
 {% block content %}
     <h1 class="text-center">山东求实建筑工程司法鉴定所农村房屋安全鉴定报告</h1>
     <p class="small-title">编号</p>
     <ul class="list-inline row detail-content">
-        <li class="list-inline col-md-12">编号：{{ report.bid }}</li>
-        <li class="list-inline col-md-12">唯一性编码标识：{{ report.id }}</li>
+        <li class="list-inline col-md-12">
+            编号：{{ report.bid|default_if_none:"" }}</li>
+        <li class="list-inline col-md-12">
+            唯一性编码标识：{{ report.id|default_if_none:"" }}</li>
     </ul>
     <p class="small-title">基本资料</p>
     <div class="detail-content">
         <ul class="list-inline row">
-            <li class="list-inline-item col">姓名：{{ report.name }}</li>
-            <li class="list-inline-item col">身份证号：{{ report.identity }}</li>
-            <li class="list-inline-item col">建成年代：{{ report.decade }}</li>
+            <li class="list-inline-item col">
+                姓名：{{ report.name|default_if_none:"" }}</li>
+            <li class="list-inline-item col">
+                身份证号：{{ report.identity|default_if_none:"" }}</li>
+            <li class="list-inline-item col">
+                建成年代：{{ report.decade|default_if_none:"" }}年代
+            </li>
         </ul>
         <ul class="list-inline row">
             <li class="list-inline-item col">
-                结构形式：{{ report.get_structure_display }}</li>
+                结构形式：{{ report.get_structure_display|default_if_none:"" }}</li>
         </ul>
     </div>
     <p class="small-title">结构组成部分检查结果</p>
@@ -26,92 +33,92 @@
             <div class="col-md-2">
                 场地安全程度：
             </div>
-            <div class="col-md-1">{{ report.security }}</div>
+            <div class="col-md-1">{{ report.security|default_if_none:"" }}</div>
             {% for detail in report.security_detail.all %}
-                <div class="col-md-3">{{ detail }}</div>
+                <div class="col-md-3">{{ detail|default_if_none:"" }}</div>
             {% endfor %}
         </div>
         <div class="row">
             <div class="col-md-2">
                 地基基础：
             </div>
-            <div class="col-md-1">{{ report.groundsill }}</div>
+            <div class="col-md-1">{{ report.groundsill|default_if_none:"" }}</div>
             {% for detail in report.groundsill_detail.all %}
-                <div class="col-md-3">{{ detail }}</div>
+                <div class="col-md-3">{{ detail|default_if_none:"" }}</div>
             {% endfor %}
         </div>
         <div class="row">
             <div class="col-md-2">
                 房屋整体倾斜：
             </div>
-            <div class="col-md-1">{{ report.tilt }}</div>
+            <div class="col-md-1">{{ report.tilt|default_if_none:"" }}</div>
             {% for detail in report.tilt_detail.all %}
-                <div class="col-md-3">{{ detail }}</div>
+                <div class="col-md-3">{{ detail|default_if_none:"" }}</div>
             {% endfor %}
         </div>
         <div class="row">
             <div class="col-md-2">
                 上部承重结构：
             </div>
-            <div class="col-md-1">{{ report.upon }}</div>
+            <div class="col-md-1">{{ report.upon|default_if_none:"" }}</div>
             {% for detail in report.upon_detail.all %}
-                <div class="col-md-3">{{ detail }}</div>
+                <div class="col-md-3">{{ detail|default_if_none:"" }}</div>
             {% endfor %}
         </div>
         <div class="row">
             <div class="col-md-2">
                 围护结构：
             </div>
-            <div class="col-md-1">{{ report.fence }}</div>
+            <div class="col-md-1">{{ report.fence|default_if_none:"" }}</div>
             {% for detail in report.fence_detail.all %}
-                <div class="col-md-3">{{ detail }}</div>
+                <div class="col-md-3">{{ detail|default_if_none:"" }}</div>
             {% endfor %}
         </div>
     </div>
     <p class="small-title">房屋综合评定</p>
     <div class="detail-content">
 
-    <div class="row">
-        <div class="col-md-4">评定等级</div>
-        <div class="col-md-8">{{ report.get_assess_level_display }}</div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">处理建议：</div>
-        {% for advice in report.advice.all %}
-            <div class="col-md-2">{{ advice }}</div>
-        {% endfor %}
-    </div>
+        <div class="row">
+            <div class="col-md-4">评定等级</div>
+            <div class="col-md-8">{{ report.get_assess_level_display|default_if_none:"" }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">处理建议：</div>
+            {% for advice in report.advice.all %}
+                <div class="col-md-2">{{ advice|default_if_none:"" }}</div>
+            {% endfor %}
+        </div>
     </div>
     <p class="small-title">制表信息</p>
     <div class="detail-content">
 
         <div class="row">
             <div class="col-md-3 text-right">镇（街道）联系人：</div>
-            <div class="col-md-3">{{ report.street_contract }}</div>
+            <div class="col-md-3">{{ report.street_contract|default_if_none:"" }}</div>
             <div class="col-md-3 text-right">电话：</div>
-            <div class="col-md-3">{{ report.street_contract_phone }}</div>
+            <div class="col-md-3">{{ report.street_contract_phone|default_if_none:"" }}</div>
         </div>
         <div class="row">
             <div class="col-md-3 text-right">村联系人：</div>
-            <div class="col-md-3">{{ report.village_contract }}</div>
+            <div class="col-md-3">{{ report.village_contract|default_if_none:"" }}</div>
             <div class="col-md-3 text-right">电话：</div>
-            <div class="col-md-3">{{ report.village_contract_phone }}</div>
+            <div class="col-md-3">{{ report.village_contract_phone|default_if_none:"" }}</div>
         </div>
 
         <div class="row">
             <div class="col-md-2">审核：</div>
-            <div class="col-md-2">{{ report.reviewer }}</div>
+            <div class="col-md-2">{{ report.reviewer|default_if_none:"" }}</div>
             <div class="col-md-2">鉴定：</div>
-            <div class="col-md-2">{{ report.appraiser }}</div>
+            <div class="col-md-2">
+                {{ report.appraiser.last_name }}{{ report.appraiser.first_name }}</div>
             <div class="col-md-2">编制日期：</div>
-            <div class="col-md-2">{{ report.created }}</div>
+            <div class="col-md-2">{{ report.created|default_if_none:"" }}</div>
         </div>
     </div>
-    {#<p class="small-title">图片：</p>#}
-    {#<div class="detail-content">#}
-    {#{% for pic in report.report_pics.all %}#}
-    {#    <img src="{{ pic.file }}">#}
-    {#{% endfor %}#}
-
+    <p class="small-title">图片：</p>
+    <div class="container">
+        {% for pic in report.picture_set.all %}
+            <img class="center-block pic" src="{{ pic.file.url }}" alt="">
+        {% endfor %}
     </div>
 {% endblock %}

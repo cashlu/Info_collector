@@ -1,12 +1,13 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.views.generic import ListView, FormView, DetailView
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView
 
-from .models import Report
 from .form import ReportForm
+from .models import Report
 
 
-class ReportListView(ListView):
+class ReportListView(LoginRequiredMixin, ListView):
     """报告列表视图"""
     model = Report
     context_object_name = 'report_list'
@@ -43,7 +44,8 @@ def report_create(request):
 #         # form.save()
 #         return super().form_valid(form)
 
-class ReportCreate(CreateView):
+
+class ReportCreate(LoginRequiredMixin, CreateView):
     model = Report
     template_name = 'report/report-edit.html'
     success_url = '/report/'
@@ -59,7 +61,6 @@ class ReportCreate(CreateView):
         'village_contract', 'village_contract_phone', 'reviewer',)
 
 
-
 # class ReportUpdate(UpdateView):
 #     model = Report
 #     fields = [field for field in Report._meta.get_fields()]
@@ -70,7 +71,7 @@ class ReportCreate(CreateView):
 #     fields = [field for field in Report._meta.get_fields()]
 
 
-class ReportDetailView(DetailView):
+class ReportDetailView(LoginRequiredMixin, DetailView):
     """报告详情页"""
     model = Report
     template_name = 'report/detail.html'

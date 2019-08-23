@@ -1,4 +1,5 @@
 from django import forms
+
 from .models import Report
 
 
@@ -14,3 +15,5 @@ class ReportForm(forms.ModelForm):
         #           'creator', 'security_detail', 'groundsill_detail',
         #           'tilt_detail', 'upon_detail', 'fence_detail')
         fields = '__all__'
+
+
