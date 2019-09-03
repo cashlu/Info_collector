@@ -1,17 +1,26 @@
-#content{
+#content {
     margin: 20px;
 }
 
-.small-title{
+.small-title {
     display: block;
     background-color: #eeeeee;
     padding-left: 10px;
 }
 
-.detail-content{
+.detail-content {
     padding: 0 20px;
 }
 
-.pic{
+.pic {
     margin: 20px 0 20px 0;
+}
+
+#report-list thead tr {
+    background-color: lightgreen;
+
+}
+
+#report-list tr:nth-child(even) {
+    background-color: rgb(242, 245, 247);
 }
