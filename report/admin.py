@@ -13,7 +13,7 @@ class PictureAdmin(admin.StackedInline):
 class InfoAdmin(admin.ModelAdmin):
     # list_display = [field.name for field in Report._meta.get_fields()]
     list_display = (
-        'name', 'identity', 'decade', 'purpose', 'assess_level', 'reviewer',
+        'id', 'name', 'identity', 'decade', 'purpose', 'assess_level', 'reviewer',
         'appraiser',)
 
     fieldsets = (

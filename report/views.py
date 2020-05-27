@@ -1,10 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 
 from .form import ReportForm
 from .models import Report
+from .utils.report_maker import data_preparer, make_report, make_ledger
 
 
 class ReportListView(LoginRequiredMixin, ListView):
@@ -76,3 +77,18 @@ class ReportDetailView(LoginRequiredMixin, DetailView):
     model = Report
     template_name = 'report/detail.html'
     context_object_name = 'report'
+
+
+def reports(request):
+    make_report()
+    return HttpResponse("Reports Done")
+
+
+def town_ledger(request):
+    make_ledger("town")
+    return HttpResponse("Town Ledger Done")
+
+
+def village_ledger(request):
+    make_ledger("village")
+    return HttpResponse("Village Ledger Done")

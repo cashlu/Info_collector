@@ -13,8 +13,10 @@
     </facet>
   </component>
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Python 3.7 (Info_collector-8HzY7bqj)" jdkType="Python SDK" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/venv" />
+    </content>
+    <orderEntry type="jdk" jdkName="Python 3.8 (Info_collector)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
@@ -24,8 +26,5 @@
         <option value="$MODULE_DIR$/../Info_collector\templates" />
       </list>
     </option>
-  </component>
-  <component name="TestRunnerService">
-    <option name="PROJECT_TEST_RUNNER" value="Unittests" />
   </component>
 </module>

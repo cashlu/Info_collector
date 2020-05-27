@@ -9,4 +9,8 @@ urlpatterns = [
     path('create/', views.ReportCreate.as_view(), name='report_create'),
     # path('login/', views.LoginView.as_view(), name='login_view'),
     # path('update/<int:pk>', views.UpdateView(), name='report_update'),
+    path('reports/', views.reports, name='report_maker'),
+    path('townledger/', views.town_ledger, name='town_ledger'),
+    path('villageledger/', views.village_ledger, name='village_ledger'),
+
 ]

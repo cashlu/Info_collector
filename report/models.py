@@ -423,7 +423,7 @@ class Report(models.Model):
 
     def __str__(self):
         return str(self.pk) + ' - ' + str(self.name) + '(' + str(
-            self.identity) + ')'
+            self.town.name) + ' -- ' + str(self.village.name) + ')'
 
 
 class Picture(models.Model):
