@@ -172,7 +172,8 @@ def data_preparer(field_name="", value=""):
     else:
         # 获取所有报告数据
         # queryset = Report.objects.all()
-        queryset = Report.objects.exclude(id=412)
+        # queryset = Report.objects.exclude(id=412)
+        queryset = Report.objects.filter(id__gte=475)
 
     data_list = []
 
