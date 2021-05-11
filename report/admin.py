@@ -37,6 +37,10 @@ class InfoAdmin(admin.ModelAdmin):
             'assess_level',
             'advice'
         ]}),
+        ('邻里情况', {'fields': [
+            ('neighbor_east', 'neighbor_west', 'neighbor_south', 'neighbor_north',),
+        ]}),
+
         ('表尾', {'fields': [
             ('street_contract', 'street_contract_phone'),
             ('village_contract', 'village_contract_phone'),

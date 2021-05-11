@@ -398,6 +398,15 @@ class Report(models.Model):
                                     null=True, blank=True, verbose_name='评定等级')
     advice = models.ManyToManyField(Advice, blank=True,
                                     verbose_name='处理建议')
+    neighbor_east = models.CharField(max_length=50, null=True,
+                                     blank=True, verbose_name="东邻")
+    neighbor_west = models.CharField(max_length=50, null=True,
+                                     blank=True, verbose_name="西邻")
+    neighbor_south = models.CharField(max_length=50, null=True,
+                                      blank=True, verbose_name="南邻")
+    neighbor_north = models.CharField(max_length=50, null=True,
+                                      blank=True, verbose_name="北邻")
+
     street_contract = models.CharField(max_length=50, null=True, blank=True,
                                        verbose_name='镇（街道）联系人')
     street_contract_phone = models.CharField(max_length=50, null=True,
@@ -434,5 +443,3 @@ class Picture(models.Model):
     class Meta:
         ordering = ('-created',)
         verbose_name_plural = '图片'
-
-
