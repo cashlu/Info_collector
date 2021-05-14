@@ -33,10 +33,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00f9cf01-0517-4021-9e01-9bdf680bf15a" name="Default Changelist" comment="nothing">
-      <change afterPath="$PROJECT_DIR$/report/migrations/0009_auto_20210511_2210.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/report/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/report/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/report/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -195,7 +192,8 @@
       <workItem from="1590572120236" duration="1466000" />
       <workItem from="1591088111300" duration="3531000" />
       <workItem from="1592303376390" duration="119000" />
-      <workItem from="1620708276896" duration="5259000" />
+      <workItem from="1620708276896" duration="6053000" />
+      <workItem from="1620913165241" duration="3402000" />
     </task>
     <task id="LOCAL-00001" summary="added a user app, and moved the user authencation model into the user app.">
       <created>1566553022507</created>
@@ -232,7 +230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620711685681</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="nothing">
+      <created>1620743213636</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1620743213636</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

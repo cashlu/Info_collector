@@ -233,6 +233,20 @@ class Report(models.Model):
         ('2010', '2010'),
     )
 
+    # 房间数
+    ROOM_COUNT_CHOICE = (
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 9),
+        (10, 10),
+    )
+
     # 房屋用途choice
     PURPOSE_CHOICE = (
         (1, '住宅'),
@@ -336,14 +350,6 @@ class Report(models.Model):
         ('e', '倒塌'),
     )
 
-    # 填表人
-    # todo: 名单要修改
-    CREATOR_CHOICE = (
-        (1, '杨军魁'),
-        (2, '芦满'),
-        (3, '关萌'),
-        (4, '黄波'),
-    )
     bid = models.CharField(max_length=100, null=True, blank=True,
                            verbose_name='建鉴编号')
     name = models.CharField(max_length=250, null=True, blank=True,
@@ -352,6 +358,8 @@ class Report(models.Model):
                                 verbose_name='身份证号', unique=True)
     decade = models.CharField(choices=DECADE_CHOICE, max_length=10,
                               null=True, blank=True, verbose_name='建成年代')
+    room_num = models.IntegerField(choices=ROOM_COUNT_CHOICE,
+                                   null=True, blank=True, verbose_name="房间数量")
     city = models.ForeignKey(City, null=True, blank=True,
                              on_delete=models.SET_NULL,
                              verbose_name='城市')
